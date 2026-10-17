@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="GameLib.Tests/GameLib.Tests.csproj" Id="01fcb39c-ff7e-48c6-b8c5-992419587d8f" />
+  <Project Path="GameLib/GameLib.csproj" Id="cae09823-c9ac-465f-8d02-ea5208d7db50" />
   <Project Path="Task_43_Nuli/Task_43_Nuli.csproj" />
 </Solution>

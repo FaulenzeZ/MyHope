@@ -1,4 +1,6 @@
-﻿namespace Hope
+﻿using GameLib;
+
+namespace Hope
 {
     class Program
     {

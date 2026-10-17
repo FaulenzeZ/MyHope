@@ -8,19 +8,19 @@ namespace Hope
 {
     public class Game
     {
-        public Player Player;
-        private List<Spider> spiders;
+        public Player Player { get; set; }
+        public List<Spider> Spiders {  get; private set; }
         private int axeX = 3;
         private int axeY = 1;
         private bool axeOnMap = true;
 
         public Game()
         {
-            Player = new Player(3, 3);
+            Player = new Player(1, 5);
 
-            spiders = new List<Spider>();
-            spiders.Add(new Spider(1, 1));
-            spiders.Add(new Spider(1, 3));
+            Spiders = new List<Spider>();
+            Spiders.Add(new Spider(1, 1));
+            Spiders.Add(new Spider(1, 3));
 
         }
 
@@ -47,7 +47,7 @@ namespace Hope
                     {
                         Console.Write("P");
                     }
-                    else if (spiders.Exists( s => s.X == x && s.Y == y))
+                    else if (Spiders.Exists( s => s.X == x && s.Y == y))
                     {
                         Console.Write("S");
                     }
@@ -80,12 +80,12 @@ namespace Hope
                 
             }
 
-            Spider? spider = spiders.Find(s => s.X == newX && s.Y == newY);
+            Spider? spider = Spiders.Find(s => s.X == newX && s.Y == newY);
             if (spider != null)
             {
                 if (Player.HasAxe)
                 {
-                    spiders.Remove(spider);
+                    Spiders.Remove(spider);
                 }
                 else
                 {
