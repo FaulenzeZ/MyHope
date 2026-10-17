@@ -7,11 +7,13 @@ namespace Hope
         static void Main()
         {
             Game game = new Game();
+            Renderer renderer = new Renderer();
 
+            
             while (game.Player.IsAlive)
             {
                 Console.Clear();
-                game.draw();
+                renderer.Draw(game);
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
 
@@ -24,7 +26,7 @@ namespace Hope
             }
 
             Console.Clear();
-            game.draw();
+            renderer.Draw(game);
             Console.WriteLine("Game over");
             Console.ReadKey(true);
         }

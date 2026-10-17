@@ -10,12 +10,12 @@ namespace GameLib.Tests
         {
             Game game = new Game();
 
-            game.Player.X = 5;
-            game.Player.Y = 1;
+            game.Player.X = 3;
+            game.Player.Y = 3;
             int startX = game.Player.X;
             int startY = game.Player.Y;
 
-            game.move(0, -1);
+            game.move(0, 1);
 
             Assert.That(game.Player.X, Is.EqualTo(startX));
             Assert.That(game.Player.Y, Is.EqualTo(startY));
