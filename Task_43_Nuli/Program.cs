@@ -9,7 +9,7 @@ namespace Hope
             Game game = new Game();
             Renderer renderer = new Renderer();
 
-            
+
             while (game.Player.IsAlive)
             {
                 Console.Clear();
