@@ -1,6 +1,7 @@
 ﻿using GameLib.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -17,7 +18,7 @@ namespace GameLib
 
         public Game()
         {
-            Player = new Player(3, 3);
+            Player = new Player(1, 1);
             Wall = new Wall(20, 10, 19, 9);
             Spiders = new List<Spider>();
 
@@ -36,25 +37,35 @@ namespace GameLib
 
         public void move(int dx, int dy)
         {
-            if(!Player.IsAlive) return;
-
             int newX = Player.X + dx;
             int newY = Player.Y + dy;
 
-            if (newX <= 0 || newY <= 0 || newY >= Wall.EndY || newX >= Wall.EndX)
-            {
-                return;
-            }
+            if (IsWall(newX, newY)) return;
+            IsAxe(newX, newY);
+            Spider_Find(newX, newY);
+            if (!Player.IsAlive) return;
 
+            Player.X = newX;
+            Player.Y = newY;
+        }
 
+        public bool IsWall(int newX, int newY)
+        {
+            return (newX <= 0 || newY <= 0 || newY >= Wall.EndY || newX >= Wall.EndX) ;
+        }
 
+        public void IsAxe(int newX, int newY) 
+        {
             if (newX == Axe.X && newY == Axe.Y)
             {
                 Player.HasAxe = true;
                 Axe.IsAxeOnMap = false;
-                
-            }
 
+            }
+        }
+
+        public void Spider_Find(int newX, int newY) 
+        {
             Spider? spider = Spiders.Find(s => s.X == newX && s.Y == newY);
             if (spider != null)
             {
@@ -72,10 +83,11 @@ namespace GameLib
                     Player.IsAlive = false;
                 }
             }
+        }
 
+        public void MoveSpiders(int dx, int dy)
+        {
 
-            Player.X = newX;
-            Player.Y = newY;
         }
     }
 }
