@@ -32,7 +32,7 @@ namespace GameLib.Tests
             game.Axe.X = 2;
 
 
-            game.move(-1, 1);
+            game.move(-1, 0);
 
             Assert.That(game.Player.HasAxe, Is.True);
         }
@@ -51,7 +51,7 @@ namespace GameLib.Tests
         }
 
         [Test]
-        public void Move_OnSpiderWithAxe_KillsSpider()
+        public void Move_OnSpiderWithAxe_KillSpider()
         {
             Game game = new Game();
 
@@ -61,10 +61,13 @@ namespace GameLib.Tests
 
             game.Spiders.Clear();
             game.Spiders.Add(new Models.Spider(5, 4));
-           
+            game.Spiders.Add(new Models.Spider(9, 4));
+
+            int spiders_count = game.Spiders.Count;
+
             game.move(0, -1);
             
-            Assert.That(game.Spiders.Count, Is.EqualTo(0));
+            Assert.That(game.Spiders.Count, Is.EqualTo(spiders_count -1));
         }
 
         [Test]
@@ -84,16 +87,21 @@ namespace GameLib.Tests
             Assert.That(game.Player.IsAlive, Is.False);
         }
 
-        //[Test]
-        //public void Spiders_Counts_Null()
-        //{
-        //    Game game = new Game();
+        [Test]
+        public void Spiders_Counts_IsNull_WIN()
+        {
+            Game game = new Game();
 
-        //    int NullSpiders = game.Spiders.Count;
-        //    bool Win = true;
+            game.Player.X = 1;
+            game.Player.Y = 2;
+            game.Player.HasAxe = true;
 
+            game.Spiders.Clear();
+            game.Spiders.Add(new Models.Spider(1, 1));
 
-        //    Assert.That(Win, Is.False);
-        //}
+            game.move(0, -1);
+
+            Assert.That(game.Player.IsAlive, Is.False);
+        }
     }
 }
