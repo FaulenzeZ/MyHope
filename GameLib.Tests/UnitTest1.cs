@@ -74,6 +74,9 @@ namespace GameLib.Tests
             game.Player.X = 1;
             game.Player.Y = 2;
             game.Player.HasAxe = false;
+
+            game.Spiders.Clear();
+            game.Spiders.Add(new Models.Spider(1, 1));
             game.Spiders.Exists(s => s.X == 1 && s.Y == 1);
 
             game.move(0, -1);

@@ -10,7 +10,7 @@ namespace GameLib
     public class Game
     {
         public Player Player { get; private set; }
-        public List<Spider> Spiders {  get; set; }
+        public List<Spider> Spiders {  get; private set; }
         public Axe Axe { get; private set; }
         public Wall Wall { get; private set; }
         private Random _random = new Random();
