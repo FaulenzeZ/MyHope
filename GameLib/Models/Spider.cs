@@ -4,15 +4,11 @@ using System.Text;
 
 namespace GameLib.Models
 {
-    public class Spider
+    public class Spider : Entity
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public Spider(int x, int y)
+        public Spider(int x, int y) : base (x, y) 
         {
-            X = x;
-            Y = y;
+            
         }
     }
 }

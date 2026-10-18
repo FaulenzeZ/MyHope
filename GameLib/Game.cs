@@ -14,6 +14,7 @@ namespace GameLib
         public Axe Axe { get; private set; }
         public Wall Wall { get; private set; }
         private Random _random = new Random();
+
         public Game()
         {
             Player = new Player(3, 3);
@@ -22,7 +23,7 @@ namespace GameLib
 
             int X = _random.Next(1, 19);
             int Y = _random.Next(1, 9);
-            Axe = new Axe(X, Y, true);
+            Axe = new Axe(X, Y);
 
             int sX1 = _random.Next(1, 19);
             int sY1 = _random.Next(1, 9);
@@ -31,7 +32,6 @@ namespace GameLib
             int sX2 = _random.Next(1, 19);
             int sY2 = _random.Next(1, 9);
             Spiders.Add(new Spider(sX2, sY2));
-
         }
 
         public void move(int dx, int dy)
@@ -64,7 +64,7 @@ namespace GameLib
 
                     if (Spiders.Count == 0)
                     {
-                        Player.IsAlive = false;
+                        Player.IsWin = true;
                     }
                 }
                 else

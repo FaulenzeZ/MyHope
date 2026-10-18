@@ -4,16 +4,12 @@ using System.Text;
 
 namespace GameLib.Models
 {
-    public class Axe
+    public class Axe : Entity
     {
-        public int X { get; set; }
-        public int Y { get; set; }
         public bool IsAxeOnMap { get; set; }
-        public Axe(int x, int y, bool isAxeOnMap)
+        public Axe(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
-            IsAxeOnMap = isAxeOnMap;
+            IsAxeOnMap = true;
         }
     }
 }

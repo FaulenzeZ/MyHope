@@ -1,18 +1,16 @@
 ﻿namespace GameLib.Models
 {
-   public class Player
+   public class Player : Entity
    {
-        public int X { get; private set; }
-        public int Y { get; private set; }
         public bool HasAxe { get; set; }
         public bool IsAlive { get; set; }
+        public bool IsWin {  get; set; }
 
-        public Player(int x, int y)
+        public Player(int x, int y) : base(x,y)
         {
-            X = x;
-            Y = y;
             HasAxe = false;
             IsAlive = true;
+            IsWin = false;
         }
     }
 }
