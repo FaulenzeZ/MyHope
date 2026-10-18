@@ -13,26 +13,23 @@ namespace GameLib
         public List<Spider> Spiders {  get; set; }
         public Axe Axe { get; private set; }
         public Wall Wall { get; private set; }
-
         private Random _random = new Random();
         public Game()
         {
             Player = new Player(3, 3);
+            Wall = new Wall(20, 10, 19, 9);
+            Spiders = new List<Spider>();
 
             int X = _random.Next(1, 19);
             int Y = _random.Next(1, 9);
+            Axe = new Axe(X, Y, true);
 
             int sX1 = _random.Next(1, 19);
             int sY1 = _random.Next(1, 9);
+            Spiders.Add(new Spider(sX1, sY1));
 
             int sX2 = _random.Next(1, 19);
             int sY2 = _random.Next(1, 9);
-
-            Wall = new Wall(20, 10, 19, 9);
-            Spiders = new List<Spider>();
-            Axe = new Axe(X, Y, true);
-
-            Spiders.Add(new Spider(sX1, sY1));
             Spiders.Add(new Spider(sX2, sY2));
 
         }

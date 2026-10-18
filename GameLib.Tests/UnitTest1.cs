@@ -54,16 +54,17 @@ namespace GameLib.Tests
         public void Move_OnSpiderWithAxe_KillsSpider()
         {
             Game game = new Game();
-            game.Player.X = 1;
-            game.Player.Y = 2;
+
+            game.Player.X = 5;
+            game.Player.Y = 5;
             game.Player.HasAxe = true;
 
-            int spiderBefore = game.Spiders.Count;
-
+            game.Spiders.Clear();
+            game.Spiders.Add(new Models.Spider(5, 4));
+           
             game.move(0, -1);
-            if (game.Player.X == )
-
-            Assert.That(game.Spiders.Count, Is.EqualTo(spiderBefore - 1));
+            
+            Assert.That(game.Spiders.Count, Is.EqualTo(0));
         }
 
         [Test]
