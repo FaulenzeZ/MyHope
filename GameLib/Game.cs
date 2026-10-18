@@ -18,23 +18,8 @@ namespace GameLib
 
         public Game()
         {
-            Console.WriteLine("ВВедите координаты карты: x, y");
-            string[] coordinat = Console.ReadLine().Split(" ");
-            int[] coor = new int[coordinat.Length];
-
-            for (int i = 0; i < coordinat.Length; i++)
-            {
-                coor[i] = int.Parse(coordinat[i]);
-            }
-
-            int _X = coor[0];
-            int _Y = coor[1];
-
-            int endX = _X - 1;
-            int endY = _Y - 1;
-
             Player = new Player(1, 1);
-            Wall = new Wall(_X, _Y, endX, endY);
+            Wall = new Wall(20, 10, 19, 9);
             Spiders = new List<Spider>();
 
             int X = _random.Next(1, 19);
@@ -110,6 +95,7 @@ namespace GameLib
                         || (x == Axe.X && y == Axe.Y) 
                         || Spiders.Exists(s => s.X == x && s.Y == y);
             } while (occupied);
+
             Spiders.Add(new Spider(x, y));
         }
     }
