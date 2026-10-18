@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
@@ -13,24 +14,19 @@ namespace GameLib
         public Axe Axe { get; private set; }
         public Wall Wall { get; private set; }
 
+        private Random _random = new Random();
         public Game()
         {
             Player = new Player(3, 3);
-            Random randomAxe = new Random();
 
-            int X = randomAxe.Next(1, 19);
-            int Y = randomAxe.Next(1, 9);
+            int X = _random.Next(1, 19);
+            int Y = _random.Next(1, 9);
 
-            Random randomSpider1 = new Random();
+            int sX1 = _random.Next(1, 19);
+            int sY1 = _random.Next(1, 9);
 
-            int sX1 = randomSpider1.Next(1, 19);
-            int sY1 = randomSpider1 .Next(1, 9);
-
-
-            Random randomSpider2 = new Random();
-
-            int sX2 = randomSpider2.Next(1, 19);
-            int sY2 = randomSpider2.Next(1, 9);
+            int sX2 = _random.Next(1, 19);
+            int sY2 = _random.Next(1, 9);
 
             Wall = new Wall(20, 10, 19, 9);
             Spiders = new List<Spider>();
