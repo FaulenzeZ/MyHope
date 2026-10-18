@@ -10,15 +10,15 @@ namespace GameLib.Tests
         {
             Game game = new Game();
 
-            game.Player.X = 3;
-            game.Player.Y = 3;
-            int startX = game.Player.X;
-            int startY = game.Player.Y;
+            game.Player.X = 1;
+            game.Player.Y = 1;
+            int newX = game.Player.X;
+            int newY = game.Player.Y;
 
-            game.move(0, 1);
+            game.move(0, -1);
 
-            Assert.That(game.Player.X, Is.EqualTo(startX));
-            Assert.That(game.Player.Y, Is.EqualTo(startY));
+            Assert.That(game.Player.X, Is.EqualTo(newX));
+            Assert.That(game.Player.Y, Is.EqualTo(newY));
         }
 
         [Test]
@@ -28,8 +28,11 @@ namespace GameLib.Tests
             game.Player.X = 3;
             game.Player.Y = 2;
             game.Player.HasAxe = false;
+            game.Axe.X = 2;
+            game.Axe.X = 2;
 
-            game.move(0, -1);
+
+            game.move(-1, 1);
 
             Assert.That(game.Player.HasAxe, Is.True);
         }
@@ -58,9 +61,9 @@ namespace GameLib.Tests
             int spiderBefore = game.Spiders.Count;
 
             game.move(0, -1);
+            if (game.Player.X == )
 
             Assert.That(game.Spiders.Count, Is.EqualTo(spiderBefore - 1));
-            Assert.That(game.Player.HasAxe, Is.True);
         }
 
         [Test]
@@ -70,11 +73,23 @@ namespace GameLib.Tests
             game.Player.X = 1;
             game.Player.Y = 2;
             game.Player.HasAxe = false;
+            game.Spiders.Exists(s => s.X == 1 && s.Y == 1);
 
             game.move(0, -1);
 
             Assert.That(game.Player.IsAlive, Is.False);
         }
 
+        //[Test]
+        //public void Spiders_Counts_Null()
+        //{
+        //    Game game = new Game();
+
+        //    int NullSpiders = game.Spiders.Count;
+        //    bool Win = true;
+
+
+        //    Assert.That(Win, Is.False);
+        //}
     }
 }

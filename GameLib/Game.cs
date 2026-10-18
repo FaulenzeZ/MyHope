@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -8,22 +9,36 @@ namespace GameLib
     public class Game
     {
         public Player Player { get; private set; }
-        public List<Spider> Spiders {  get; private set; }
-        public int AxeX {  get; private set; }
-        public int AxeY { get; private set; }
-        public bool IsAxeOnMap {  get; private set; }
+        public List<Spider> Spiders {  get; set; }
+        public Axe Axe { get; private set; }
+        public Wall Wall { get; private set; }
 
         public Game()
         {
             Player = new Player(3, 3);
+            Random randomAxe = new Random();
 
+            int X = randomAxe.Next(1, 19);
+            int Y = randomAxe.Next(1, 9);
+
+            Random randomSpider1 = new Random();
+
+            int sX1 = randomSpider1.Next(1, 19);
+            int sY1 = randomSpider1 .Next(1, 9);
+
+
+            Random randomSpider2 = new Random();
+
+            int sX2 = randomSpider2.Next(1, 19);
+            int sY2 = randomSpider2.Next(1, 9);
+
+            Wall = new Wall(20, 10, 19, 9);
             Spiders = new List<Spider>();
-            Spiders.Add(new Spider(1, 1));
-            Spiders.Add(new Spider(2, 3));
+            Axe = new Axe(X, Y, true);
 
-            AxeX = 3;
-            AxeY = 1;
-            IsAxeOnMap = true;
+            Spiders.Add(new Spider(sX1, sY1));
+            Spiders.Add(new Spider(sX2, sY2));
+
         }
 
         public void move(int dx, int dy)
@@ -33,15 +48,17 @@ namespace GameLib
             int newX = Player.X + dx;
             int newY = Player.Y + dy;
 
-            if (newX <= 0 || newY <= 0 || newY >= 4 || newX >= 4)
+            if (newX <= 0 || newY <= 0 || newY >= Wall.EndY || newX >= Wall.EndX)
             {
                 return;
             }
-            
-            if (newX == AxeX && newY == AxeY)
+
+
+
+            if (newX == Axe.X && newY == Axe.Y)
             {
                 Player.HasAxe = true;
-                IsAxeOnMap = false;
+                Axe.IsAxeOnMap = false;
                 
             }
 
@@ -51,12 +68,18 @@ namespace GameLib
                 if (Player.HasAxe)
                 {
                     Spiders.Remove(spider);
+
+                    if (Spiders.Count == 0)
+                    {
+                        Player.IsAlive = false;
+                    }
                 }
                 else
                 {
                     Player.IsAlive = false;
                 }
             }
+
 
             Player.X = newX;
             Player.Y = newY;

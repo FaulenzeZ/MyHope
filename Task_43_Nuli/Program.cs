@@ -22,7 +22,8 @@ namespace Hope
                 else if (key.Key == ConsoleKey.D) game.move(1, 0);
                 else if (key.Key == ConsoleKey.A) game.move(-1, 0);
                 else if (key.Key == ConsoleKey.Q) break;
-                
+
+
             }
 
             Console.Clear();
