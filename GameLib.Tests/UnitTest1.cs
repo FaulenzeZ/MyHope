@@ -28,6 +28,7 @@ namespace GameLib.Tests
             game.Player.X = 3;
             game.Player.Y = 2;
             game.Player.HasAxe = false;
+           
             game.Axe.X = 2;
             game.Axe.X = 2;
 
