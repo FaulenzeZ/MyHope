@@ -26,13 +26,7 @@ namespace GameLib
             int Y = _random.Next(1, 9);
             Axe = new Axe(X, Y);
 
-            int sX1 = _random.Next(1, 19);
-            int sY1 = _random.Next(1, 9);
-            Spiders.Add(new Spider(sX1, sY1));
-
-            int sX2 = _random.Next(1, 19);
-            int sY2 = _random.Next(1, 9);
-            Spiders.Add(new Spider(sX2, sY2));
+            for (int i = 0; i < 3; i++) SpawnSpider();
         }
 
         public void move(int dx, int dy)
@@ -42,6 +36,7 @@ namespace GameLib
 
             if (IsWall(newX, newY)) return;
             IsAxe(newX, newY);
+
             Spider_Find(newX, newY);
             if (!Player.IsAlive) return;
 
@@ -84,10 +79,23 @@ namespace GameLib
                 }
             }
         }
-
-        public void MoveSpiders(int dx, int dy)
+        
+        private void SpawnSpider()
         {
+            int x, y;
+            bool occupied;
 
+            do
+            {
+                x = _random.Next(1, 9);
+                y = _random.Next(1, 9);
+
+                occupied = (x == Player.X && y == Player.Y) 
+                        || (x == Axe.X && y == Axe.Y) 
+                        || Spiders.Exists(s => s.X == x && s.Y == y);
+            } while (occupied);
+
+            Spiders.Add(new Spider(x, y));
         }
     }
 }

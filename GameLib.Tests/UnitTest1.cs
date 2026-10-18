@@ -30,7 +30,7 @@ namespace GameLib.Tests
             game.Player.HasAxe = false;
            
             game.Axe.X = 2;
-            game.Axe.X = 2;
+            game.Axe.Y = 2;
 
 
             game.move(-1, 0);
@@ -102,17 +102,7 @@ namespace GameLib.Tests
 
             game.move(0, -1);
 
-            Assert.That(game.Player.IsAlive, Is.False);
-        }
-
-        public void Is_Spawn_Spider()
-        {
-            Game game = new Game();
-
-            game.Spiders.Clear();
-            game.Spiders.Add(new Models.Spider(5, 5));
-            game.Spiders.Add(new Models.Spider(5, 5));
-
+            Assert.That(game.Player.IsWin, Is.True);
         }
     }
 }
